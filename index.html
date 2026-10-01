@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मल्हपुर प्रीमियर लीग सीज़न 6 - पंजीकरण</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>मल्हपुर प्रीमियर लीग (MPL) सीज़न 6</h1>
+            <p>पंजीकरण अवधि: 01 अक्टूबर 2026 से 15 अक्टूबर 2026</p>
+        </header>
+
+        <form id="registrationForm" onsubmit="handleRegistration(event)">
+            <div class="form-group">
+                <label for="playerName">खिलाड़ी का पूरा नाम *</label>
+                <input type="text" id="playerName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">मोबाइल नंबर *</label>
+                <input type="tel" id="mobile" pattern="[0-9]{10}" required placeholder="10 अंकों का मोबाइल नंबर">
+            </div>
+
+            <div class="form-group">
+                <label for="age">आयु *</label>
+                <input type="number" id="age" min="10" max="60" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">पता *</label>
+                <textarea id="address" rows="2" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="role">खिलाड़ी की भूमिका (Role) *</label>
+                <select id="role" required>
+                    <option value="">चयन करें</option>
+                    <option value="Batsman">बल्लेबाज (Batsman)</option>
+                    <option value="Bowler">गेंदबाज (Bowler)</option>
+                    <option value="All-rounder">ऑल-राउंडर (All-rounder)</option>
+                    <option value="Wicket-keeper">विकेट-कीपर (Wicket-keeper)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tshirtSize">टी-शर्ट साइज़ *</label>
+                <select id="tshirtSize" required>
+                    <option value="">साइज़ चुनें</option>
+                    <option value="S">Small (S)</option>
+                    <option value="M">Medium (M)</option>
+                    <option value="L">Large (L)</option>
+                    <option value="XL">X-Large (XL)</option>
+                    <option value="XXL">XX-Large (XXL)</option>
+                </select>
+            </div>
+
+            <!-- भुगतान अनुभाग -->
+            <div class="payment-section">
+                <h3>पंजीकरण शुल्क: ₹400</h3>
+                <p>UPI ID: <strong>6387347174@ibl</strong> पर भुगतान करें और नीचे UTR नंबर दर्ज करें।</p>
+                <div class="form-group">
+                    <label for="utrNumber">UTR / ट्रांजैक्शन नंबर *</label>
+                    <input type="text" id="utrNumber" required placeholder="UPI UTR या ट्रांजैक्शन आईडी">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">पंजीकरण जमा करें</button>
+        </form>
+    </div>
+
+    <!-- सफलता पॉपअप -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 पंजीकरण सफल!</h2>
+            <p>आपका पंजीकरण सफलतापूर्वक दर्ज हो गया है।</p>
+            <p>आपका रजिस्ट्रेशन नंबर: <strong id="regNumberDisplay"></strong></p>
+            <button onclick="closeModal()">ठीक है</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
