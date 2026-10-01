@@ -26,7 +26,7 @@ async function handleRegistration(event) {
 
     try {
         // जब आप Render पर बैकएंड लाइव करेंगे, तो यहाँ Render का लिंक डालेंगे
-        const response = await fetch('https://your-backend-name.onrender.com/api/register', {
+        const response = await fetch('https://malhpur-mpl-server.onrender.com/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
