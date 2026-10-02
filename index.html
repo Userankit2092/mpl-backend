@@ -3,35 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मल्हपुर प्रीमियर लीग सीज़न 6 - पंजीकरण</title>
-    <link rel="stylesheet" href="style.css">
+    <title>मल्हपुर प्रीमियर लीग (MPL) सीज़न 6 - 2026</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 20px; color: #333; min-height: 100vh; }
+        .container { max-width: 550px; margin: 0 auto; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; text-align: center; padding: 25px 15px; border-bottom: 4px solid #ff9800; }
+        .header img { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #fff; margin-bottom: 10px; background: #fff; object-fit: cover; }
+        .header h1 { font-size: 24px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .header p { 
+            font-size: 14px; 
+            color: #00e676; 
+            font-weight: bold; 
+            background: rgba(0, 0, 0, 0.25); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            margin-top: 8px; 
+            letter-spacing: 0.5px;
+        }
+        form { padding: 25px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; color: #444; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1.5px solid #ccc; border-radius: 8px; font-size: 15px; outline: none; transition: all 0.3s ease; background: #fdfdfd; }
+        input:focus, select:focus, textarea:focus { border-color: #2a5298; box-shadow: 0 0 8px rgba(42, 82, 152, 0.2); }
+        .row { display: flex; gap: 10px; }
+        .row .form-group { flex: 1; }
+        .payment-section { background: #f0f4f8; border: 2px dashed #b0bec5; padding: 18px; border-radius: 10px; margin-top: 20px; text-align: center; }
+        .payment-section h3 { color: #d32f2f; margin-bottom: 5px; font-size: 18px; }
+        .qr-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 15px 0; }
+        .qr-box { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); text-align: center; width: 150px; }
+        .qr-box img { width: 130px; height: 130px; border-radius: 6px; object-fit: contain; }
+        .qr-box p { font-size: 11px; margin-top: 6px; color: #555; font-weight: bold; }
+        .submit-btn { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; border: none; padding: 14px; width: 100%; font-size: 17px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-top: 15px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4); }
+        .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .modal-content { background: white; padding: 25px; border-radius: 12px; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+        .modal-content h2 { color: #2e7d32; margin-bottom: 10px; }
+        .modal-content p { font-size: 14px; color: #555; margin-bottom: 15px; }
+        .modal-content button { background: #1976d2; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <header>
+        <div class="header">
+            <img src="logo.png" alt="MPL Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1165/1165684.png'">
             <h1>मल्हपुर प्रीमियर लीग (MPL) सीज़न 6</h1>
-            <p>पंजीकरण अवधि: 01 अक्टूबर 2026 से 15 अक्टूबर 2026</p>
-        </header>
+            <p>📅 पंजीकरण अवधि: 01 अक्टूबर 2026 से 15 अक्टूबर 2026</p>
+        </div>
 
         <form id="registrationForm" onsubmit="handleRegistration(event)">
             <div class="form-group">
                 <label for="playerName">खिलाड़ी का पूरा नाम *</label>
-                <input type="text" id="playerName" required>
+                <input type="text" id="playerName" required placeholder="अपना पूरा नाम दर्ज करें">
             </div>
 
             <div class="form-group">
-                <label for="mobile">मोबाइल नंबर *</label>
-                <input type="tel" id="mobile" pattern="[0-9]{10}" required placeholder="10 अंकों का मोबाइल नंबर">
+                <label for="phone">मोबाइल नंबर *</label>
+                <input type="tel" id="phone" pattern="[6-9][0-9]{9}" required placeholder="10 अंकों का मोबाइल नंबर">
             </div>
 
             <div class="form-group">
-                <label for="age">आयु *</label>
-                <input type="number" id="age" min="10" max="60" required>
+                <label for="age">आयु (Age) *</label>
+                <input type="number" id="age" min="10" max="60" required placeholder="अपनी उम्र दर्ज करें">
             </div>
 
             <div class="form-group">
-                <label for="address">पता *</label>
-                <textarea id="address" rows="2" required></textarea>
+                <label for="address">गाँव / मोहल्ला (पता) *</label>
+                <textarea id="address" rows="2" required placeholder="गाँव, वार्ड या मोहल्ले का नाम"></textarea>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="district">जिला (District) *</label>
+                    <input type="text" id="district" required placeholder="जिला">
+                </div>
+                <div class="form-group">
+                    <label for="state">प्रदेश (State) *</label>
+                    <input type="text" id="state" required placeholder="प्रदेश">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pinCode">पिन कोड (Pin Code) *</label>
+                <input type="text" id="pinCode" pattern="[0-9]{6}" required placeholder="6 अंकों का पिन कोड">
             </div>
 
             <div class="form-group">
@@ -41,7 +98,7 @@
                     <option value="Batsman">बल्लेबाज (Batsman)</option>
                     <option value="Bowler">गेंदबाज (Bowler)</option>
                     <option value="All-rounder">ऑल-राउंडर (All-rounder)</option>
-                    <option value="Wicket-keeper">विकेट-कीपर (Wicket-keeper)</option>
+                    <option value="Wicket-keeper">विकट-कीपर (Wicket-keeper)</option>
                 </select>
             </div>
 
@@ -49,56 +106,107 @@
                 <label for="tshirtSize">टी-शर्ट साइज़ *</label>
                 <select id="tshirtSize" required>
                     <option value="">साइज़ चुनें</option>
-                    <option value="S">Small (S)</option>
-                    <option value="M">Medium (M)</option>
-                    <option value="L">Large (L)</option>
-                    <option value="XL">X-Large (XL)</option>
-                    <option value="XXL">XX-Large (XXL)</option>
+                    <option value="Small (S)">Small (S)</option>
+                    <option value="Medium (M)">Medium (M)</option>
+                    <option value="Large (L)">Large (L)</option>
+                    <option value="X-Large (XL)">X-Large (XL)</option>
+                    <option value="XXL (XXL)">XXL (XXL)</option>
                 </select>
             </div>
 
-            <!-- भुगतान अनुभाग -->
-<div class="payment-section" style="text-align: center; margin: 15px 0;">
-  <h3>पंजीकरण शुल्क: ₹400</h3>
-  <p style="font-size: 14px; color: #555; margin-bottom: 12px;">नीचे दिए गए किसी भी QR कोड को स्कैन करके भुगतान करें:</p>
-  
-  <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
-    <!-- पहला QR कोड -->
-    <div style="text-align: center;">
-      <img src="qr.jpg.png" alt="QR Code 1" style="width: 130px; height: 130px; border-radius: 8px; border: 1px solid #ccc;">
-      <p style="font-size: 12px; margin-top: 4px;">UPI ID: 6387347174@ibl</p>
-    </div>
+            <!-- भुगतान अनुभाग (ऑटोमैटिक QR कोड) -->
+            <div class="payment-section">
+                <h3>पंजीकरण शुल्क: ₹400</h3>
+                <p style="font-size: 13px; color: #2e7d32; font-weight: bold; margin-bottom: 12px;">✨ किसी भी QR को स्कैन करें, ऐप में ₹400 अपने आप आ जाएगा!</p>
+                
+                <div class="qr-container">
+                    <!-- पहला ऑटोमैटिक QR कोड -->
+                    <div class="qr-box">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=upi%3A%2F%2Fpay%3Fpa%3D6387347174%40ibl%26am%3D400%26cu%3DINR%26pn%3DMPL%2520Season%25206" alt="Auto QR 1">
+                        <p>UPI 1 (₹400 Fix)</p>
+                    </div>
 
-    <!-- दूसरा QR कोड -->
-    <div style="text-align: center;">
-      <img src="qr2.jpg.jpg" alt="QR Code 2" style="width: 130px; height: 130px; border-radius: 8px; border: 1px solid #ccc;">
-      <p style="font-size: 12px; margin-top: 4px;">UPI ID: दूसरा_यूपीआई_नंबर</p>
-    </div>
-  </div>
+                    <!-- दूसरा ऑटोमैटिक QR कोड -->
+                    <div class="qr-box">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=upi%3A%2F%2Fpay%3Fpa%3D9625481912-4%40ybl%26am%3D400%26cu%3DINR%26pn%3DMPL%2520Season%25206" alt="Auto QR 2">
+                        <p>UPI 2 (₹400 Fix)</p>
+                    </div>
+                </div>
 
-  <div class="form-group" style="text-align: left;">
-    <label for="utrNumber">UTR / ट्रांजैक्शन नंबर *</label>
-    <input type="text" id="utrNumber" required placeholder="UPI UTR का ट्रांजैक्शन नंबर दर्ज करें">
-  </div>
-</div>
-            
-            
+                <div class="form-group" style="text-align: left; margin-bottom: 0;">
+                    <label for="utrNumber">UTR / ट्रांजैक्शन नंबर *</label>
+                    <input type="text" id="utrNumber" required placeholder="UPI UTR का 12 अंकों का ट्रांजैक्शन नंबर दर्ज करें">
+                </div>
             </div>
 
             <button type="submit" class="submit-btn">पंजीकरण जमा करें</button>
         </form>
     </div>
 
-    <!-- सफलता पॉपअप -->
+    <!-- सफलता संदेश (Success Modal) -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <h2>🎉 पंजीकरण सफल!</h2>
-            <p>आपका पंजीकरण सफलतापूर्वक दर्ज हो गया है।</p>
-            <p>आपका रजिस्ट्रेशन नंबर: <strong id="regNumberDisplay"></strong></p>
+            <h2>🎉 बधाई हो!</h2>
+            <p>आपका पंजीकरण सफलतापूर्वक हो गया है।</p>
+            <p>आपका यूनिक रजिस्ट्रेशन आईडी:</p>
+            <strong id="regIdDisplay" style="font-size: 20px; color: #d32f2f;"></strong>
+            <br><br>
             <button onclick="closeModal()">ठीक है</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const BACKEND_URL = "https://mpl-backend.onrender.com";
+
+        async function handleRegistration(event) {
+            event.preventDefault();
+
+            const formData = {
+                playerName: document.getElementById('playerName').value,
+                phone: document.getElementById('phone').value,
+                age: Number(document.getElementById('age').value),
+                address: document.getElementById('address').value,
+                district: document.getElementById('district').value,
+                state: document.getElementById('state').value,
+                pinCode: document.getElementById('pinCode').value,
+                role: document.getElementById('role').value,
+                tshirtSize: document.getElementById('tshirtSize').value,
+                utr: document.getElementById('utrNumber').value
+            };
+
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'पंजीकरण हो रहा है...';
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    document.getElementById('regIdDisplay').innerText = result.registrationId;
+                    document.getElementById('successModal').style.display = 'flex';
+                    document.getElementById('registrationForm').reset();
+                } else {
+                    alert(result.message || 'पंजीकरण में कुछ समस्या आई, कृपया पुनः प्रयास करें।');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('सर्वर से संपर्क नहीं हो पा रहा है। कृपया कुछ देर बाद कोशिश करें।');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'पंजीकरण जमा करें';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            location.reload();
+        }
+    </script>
 </body>
 </html>
