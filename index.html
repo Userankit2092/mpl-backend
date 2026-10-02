@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+          <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
         body { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 20px; color: #333; min-height: 100vh; }
         .container { max-width: 550px; margin: 0 auto; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden; }
         .header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; text-align: center; padding: 25px 15px; border-bottom: 4px solid #ff9800; }
-        .header img { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #fff; margin-bottom: 10px; background: #fff; object-fit: cover; }
+        .header img { width: 85px; height: 85px; border-radius: 50%; border: 3px solid #fff; margin-bottom: 10px; background: #fff; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .header h1 { font-size: 24px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .header p { 
             font-size: 14px; 
@@ -49,7 +50,8 @@
 
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="MPL Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1165/1165684.png'">
+            <!-- नया लोगो (logo.svg) -->
+            <img src="logo.svg" alt="MPL Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1165/1165684.png'">
             <h1>मल्हपुर प्रीमियर लीग (MPL) सीज़न 6</h1>
             <p>📅 पंजीकरण अवधि: 01 अक्टूबर 2026 से 15 अक्टूबर 2026</p>
         </div>
@@ -68,6 +70,11 @@
             <div class="form-group">
                 <label for="age">आयु (Age) *</label>
                 <input type="number" id="age" min="10" max="60" required placeholder="अपनी उम्र दर्ज करें">
+            </div>
+
+            <div class="form-group">
+                <label for="playerPhoto">खिलाड़ी की फोटो (Player Photo) *</label>
+                <input type="file" id="playerPhoto" accept="image/*" required style="padding: 10px; background: white;">
             </div>
 
             <div class="form-group">
@@ -114,7 +121,7 @@
                 </select>
             </div>
 
-            <!-- भुगतान अनुभाग (ऑटोमैटिक QR कोड) -->
+            <!-- भुगतान अनुभाग (ऑटोमैटिक QR कोड + स्क्रीनशॉट अपलोड) -->
             <div class="payment-section">
                 <h3>पंजीकरण शुल्क: ₹400</h3>
                 <p style="font-size: 13px; color: #2e7d32; font-weight: bold; margin-bottom: 12px;">✨ किसी भी QR को स्कैन करें, ऐप में ₹400 अपने आप आ जाएगा!</p>
@@ -133,9 +140,14 @@
                     </div>
                 </div>
 
-                <div class="form-group" style="text-align: left; margin-bottom: 0;">
+                <div class="form-group" style="text-align: left;">
                     <label for="utrNumber">UTR / ट्रांजैक्शन नंबर *</label>
                     <input type="text" id="utrNumber" required placeholder="UPI UTR का 12 अंकों का ट्रांजैक्शन नंबर दर्ज करें">
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 0;">
+                    <label for="paymentScreenshot">भुगतान का स्क्रीनशॉट (Payment Screenshot) *</label>
+                    <input type="file" id="paymentScreenshot" accept="image/*" required style="padding: 10px; background: white;">
                 </div>
             </div>
 
@@ -158,27 +170,55 @@
     <script>
         const BACKEND_URL = "https://mpl-backend.onrender.com";
 
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
         async function handleRegistration(event) {
             event.preventDefault();
 
-            const formData = {
-                playerName: document.getElementById('playerName').value,
-                phone: document.getElementById('phone').value,
-                age: Number(document.getElementById('age').value),
-                address: document.getElementById('address').value,
-                district: document.getElementById('district').value,
-                state: document.getElementById('state').value,
-                pinCode: document.getElementById('pinCode').value,
-                role: document.getElementById('role').value,
-                tshirtSize: document.getElementById('tshirtSize').value,
-                utr: document.getElementById('utrNumber').value
-            };
+            const photoInput = document.getElementById('playerPhoto');
+            const paymentInput = document.getElementById('paymentScreenshot');
+
+            if (photoInput.files.length === 0) {
+                alert('कृपया खिलाड़ी की फोटो अपलोड करें।');
+                return;
+            }
+            if (paymentInput.files.length === 0) {
+                alert('कृपया भुगतान का स्क्रीनशॉट अपलोड करें।');
+                return;
+            }
 
             const submitBtn = document.querySelector('.submit-btn');
             submitBtn.disabled = true;
-            submitBtn.innerText = 'पंजीकरण हो रहा है...';
+            submitBtn.innerText = 'फाइलें अपलोड हो रही हैं...';
 
             try {
+                const playerPhotoBase64 = await getBase64(photoInput.files[0]);
+                const paymentScreenshotBase64 = await getBase64(paymentInput.files[0]);
+
+                const formData = {
+                    playerName: document.getElementById('playerName').value,
+                    phone: document.getElementById('phone').value,
+                    age: Number(document.getElementById('age').value),
+                    address: document.getElementById('address').value,
+                    district: document.getElementById('district').value,
+                    state: document.getElementById('state').value,
+                    pinCode: document.getElementById('pinCode').value,
+                    role: document.getElementById('role').value,
+                    tshirtSize: document.getElementById('tshirtSize').value,
+                    utr: document.getElementById('utrNumber').value,
+                    playerPhoto: playerPhotoBase64,
+                    paymentScreenshot: paymentScreenshotBase64
+                };
+
+                submitBtn.innerText = 'पंजीकरण हो रहा है...';
+
                 const response = await fetch(`${BACKEND_URL}/api/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -196,7 +236,7 @@
                 }
             } catch (error) {
                 console.error(error);
-                alert('सर्वर से संपर्क नहीं हो पा रहा है। कृपया कुछ देर बाद कोशिश करें।');
+                alert('सर्वर से संपर्क नहीं हो पा रहा है या फ़ाइल बहुत बड़ी है। कृपया कुछ देर बाद कोशिश करें।');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = 'पंजीकरण जमा करें';
@@ -210,3 +250,4 @@
     </script>
 </body>
 </html>
+  
