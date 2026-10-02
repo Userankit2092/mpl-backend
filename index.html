@@ -58,13 +58,31 @@
             </div>
 
             <!-- भुगतान अनुभाग -->
-            <div class="payment-section">
-                <h3>पंजीकरण शुल्क: ₹400</h3>
-                <p>UPI ID: <strong>6387347174@ibl</strong> पर भुगतान करें और नीचे UTR नंबर दर्ज करें।</p>
-                <div class="form-group">
-                    <label for="utrNumber">UTR / ट्रांजैक्शन नंबर *</label>
-                    <input type="text" id="utrNumber" required placeholder="UPI UTR या ट्रांजैक्शन आईडी">
-                </div>
+<div class="payment-section" style="text-align: center; margin: 15px 0;">
+  <h3>पंजीकरण शुल्क: ₹400</h3>
+  <p style="font-size: 14px; color: #555; margin-bottom: 12px;">नीचे दिए गए किसी भी QR कोड को स्कैन करके भुगतान करें:</p>
+  
+  <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
+    <!-- पहला QR कोड -->
+    <div style="text-align: center;">
+      <img src="qr.jpg.png" alt="QR Code 1" style="width: 130px; height: 130px; border-radius: 8px; border: 1px solid #ccc;">
+      <p style="font-size: 12px; margin-top: 4px;">UPI ID: 6387347174@ibl</p>
+    </div>
+
+    <!-- दूसरा QR कोड -->
+    <div style="text-align: center;">
+      <img src="qr2.jpg.jpg" alt="QR Code 2" style="width: 130px; height: 130px; border-radius: 8px; border: 1px solid #ccc;">
+      <p style="font-size: 12px; margin-top: 4px;">UPI ID: दूसरा_यूपीआई_नंबर</p>
+    </div>
+  </div>
+
+  <div class="form-group" style="text-align: left;">
+    <label for="utrNumber">UTR / ट्रांजैक्शन नंबर *</label>
+    <input type="text" id="utrNumber" required placeholder="UPI UTR का ट्रांजैक्शन नंबर दर्ज करें">
+  </div>
+</div>
+            
+            
             </div>
 
             <button type="submit" class="submit-btn">पंजीकरण जमा करें</button>
