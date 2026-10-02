@@ -9,17 +9,17 @@
         body { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 20px; color: #333; min-height: 100vh; }
         .container { max-width: 550px; margin: 0 auto; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden; }
         .header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; text-align: center; padding: 25px 15px; border-bottom: 4px solid #ff9800; }
-        .header h1 { font-size: 24px; font-weight: bold; margin-top: 10px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .logo-box { width: 110px; height: 110px; background: #ffffff; border-radius: 50%; margin: 0 auto 12px auto; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.4); border: 4px solid #ffeb3b; }
+        .header h1 { font-size: 22px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .header p { 
-            font-size: 14px; 
+            font-size: 13px; 
             color: #00e676; 
             font-weight: bold; 
-            background: rgba(0, 0, 0, 0.25); 
+            background: rgba(0, 0, 0, 0.3); 
             padding: 5px 12px; 
             border-radius: 20px; 
             display: inline-block; 
-            margin-top: 8px; 
-            letter-spacing: 0.5px;
+            margin-top: 6px; 
         }
         form { padding: 25px; }
         .form-group { margin-bottom: 18px; }
@@ -28,6 +28,7 @@
         input:focus, select:focus, textarea:focus { border-color: #2a5298; box-shadow: 0 0 8px rgba(42, 82, 152, 0.2); }
         .row { display: flex; gap: 10px; }
         .row .form-group { flex: 1; }
+        .hint { font-size: 11px; color: #d32f2f; margin-top: 4px; font-weight: bold; display: block; }
         .payment-section { background: #f0f4f8; border: 2px dashed #b0bec5; padding: 18px; border-radius: 10px; margin-top: 20px; text-align: center; }
         .payment-section h3 { color: #d32f2f; margin-bottom: 5px; font-size: 18px; }
         .qr-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 15px 0; }
@@ -48,33 +49,25 @@
 
     <div class="container">
         <div class="header">
-            <!-- डायरेक्ट एम्बेडेड प्रोफेशनल लोगो -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="90" height="90" style="border-radius: 50%; border: 3px solid #fff; background: #1e3c72; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                <defs>
-                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#1e3c72;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#2a5298;stop-opacity:1" />
-                    </linearGradient>
-                    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#F2994A;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#F2C94C;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <circle cx="250" cy="250" r="240" fill="url(#grad)" stroke="url(#gold)" stroke-width="12"/>
-                <circle cx="250" cy="250" r="190" fill="none" stroke="#ffffff" stroke-dasharray="8,6" stroke-width="3" opacity="0.7"/>
-                <g transform="translate(0, -10)">
-                    <rect x="235" y="140" width="30" height="180" rx="5" fill="#d7ccc8" transform="rotate(-45 250 230)" />
-                    <rect x="235" y="140" width="30" height="180" rx="5" fill="#bcaaa4" transform="rotate(45 250 230)" />
-                    <circle cx="250" cy="215" r="42" fill="#d32f2f" stroke="#fff" stroke-width="3"/>
-                    <path d="M 225 190 Q 250 215 275 190" fill="none" stroke="#ffeb3b" stroke-width="2" stroke-dasharray="4,3"/>
-                    <path d="M 225 240 Q 250 215 275 240" fill="none" stroke="#ffeb3b" stroke-width="2" stroke-dasharray="4,3"/>
-                </g>
-                <polygon points="250,90 258,110 280,112 263,128 268,150 250,138 232,150 237,128 220,112 242,110" fill="url(#gold)"/>
-                <text x="250" y="325" font-family="Arial, sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">MALHAPUR</text>
-                <text x="250" y="360" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#F2C94C" text-anchor="middle" letter-spacing="3">PREMIER LEAGUE</text>
-                <rect x="180" y="380" width="140" height="35" rx="17.5" fill="#ff9800"/>
-                <text x="250" y="404" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">SEASON 6 - 2026</text>
-            </svg>
+            <!-- एकदम स्पष्ट और चमकीला लोगो बॉक्स -->
+            <div class="logo-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="95" height="95">
+                    <circle cx="250" cy="250" r="240" fill="#ffffff" stroke="#1e3c72" stroke-width="12"/>
+                    <circle cx="250" cy="250" r="190" fill="none" stroke="#d32f2f" stroke-dasharray="10,6" stroke-width="4" opacity="0.8"/>
+                    <g transform="translate(0, -10)">
+                        <rect x="235" y="140" width="30" height="180" rx="5" fill="#8d6e63" transform="rotate(-45 250 230)" />
+                        <rect x="235" y="140" width="30" height="180" rx="5" fill="#6d4c41" transform="rotate(45 250 230)" />
+                        <circle cx="250" cy="215" r="42" fill="#d32f2f" stroke="#fff" stroke-width="3"/>
+                        <path d="M 225 190 Q 250 215 275 190" fill="none" stroke="#ffeb3b" stroke-width="2.5" stroke-dasharray="4,3"/>
+                        <path d="M 225 240 Q 250 215 275 240" fill="none" stroke="#ffeb3b" stroke-width="2.5" stroke-dasharray="4,3"/>
+                    </g>
+                    <polygon points="250,90 258,110 280,112 263,128 268,150 250,138 232,150 237,128 220,112 242,110" fill="#f5af19" stroke="#d32f2f" stroke-width="1"/>
+                    <text x="250" y="325" font-family="Arial, sans-serif" font-size="28" font-weight="900" fill="#1e3c72" text-anchor="middle" letter-spacing="2">MALHAPUR</text>
+                    <text x="250" y="360" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#d32f2f" text-anchor="middle" letter-spacing="3">PREMIER LEAGUE</text>
+                    <rect x="175" y="380" width="150" height="35" rx="17.5" fill="#1e3c72"/>
+                    <text x="250" y="404" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">SEASON 6 - 2026</text>
+                </svg>
+            </div>
             <h1>मल्हपुर प्रीमियर लीग (MPL) सीज़न 6</h1>
             <p>📅 पंजीकरण अवधि: 01 अक्टूबर 2026 से 15 अक्टूबर 2026</p>
         </div>
@@ -87,7 +80,7 @@
 
             <div class="form-group">
                 <label for="phone">मोबाइल नंबर *</label>
-                <input type="tel" id="phone" pattern="[6-9][0-9]{9}" required placeholder="10 अंकों का मोबाइल नंबर">
+                <input type="tel" id="phone" maxlength="10" minlength="10" pattern="[0-9]{10}" required placeholder="10 अंकों का सही मोबाइल नंबर दर्ज करें">
             </div>
 
             <div class="form-group">
@@ -97,7 +90,8 @@
 
             <div class="form-group">
                 <label for="playerPhoto">खिलाड़ी की फोटो (Player Photo) *</label>
-                <input type="file" id="playerPhoto" accept="image/*" required style="padding: 10px; background: white;">
+                <input type="file" id="playerPhoto" accept=".jpg, .jpeg, .png" required style="padding: 10px; background: white;">
+                <span class="hint">⚠️ फ़ाइल का साइज़ 20 KB से 100 KB के बीच होना चाहिए (Format: JPG, JPEG, PNG)</span>
             </div>
 
             <div class="form-group">
@@ -118,7 +112,7 @@
 
             <div class="form-group">
                 <label for="pinCode">पिन कोड (Pin Code) *</label>
-                <input type="text" id="pinCode" pattern="[0-9]{6}" required placeholder="6 अंकों का पिन कोड">
+                <input type="text" id="pinCode" maxlength="6" minlength="6" pattern="[0-9]{6}" required placeholder="6 अंकों का पिन कोड">
             </div>
 
             <div class="form-group">
@@ -144,19 +138,17 @@
                 </select>
             </div>
 
-            <!-- भुगतान अनुभाग (ऑटोमैटिक QR कोड + स्क्रीनशॉट अपलोड) -->
+            <!-- भुगतान अनुभाग -->
             <div class="payment-section">
                 <h3>पंजीकरण शुल्क: ₹400</h3>
                 <p style="font-size: 13px; color: #2e7d32; font-weight: bold; margin-bottom: 12px;">✨ किसी भी QR को स्कैन करें, ऐप में ₹400 अपने आप आ जाएगा!</p>
                 
                 <div class="qr-container">
-                    <!-- पहला ऑटोमैटिक QR कोड -->
                     <div class="qr-box">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=upi%3A%2F%2Fpay%3Fpa%3D6387347174%40ibl%26am%3D400%26cu%3DINR%26pn%3DMPL%2520Season%25206" alt="Auto QR 1">
                         <p>UPI 1 (₹400 Fix)</p>
                     </div>
 
-                    <!-- दूसरा ऑटोमैटिक QR कोड -->
                     <div class="qr-box">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=upi%3A%2F%2Fpay%3Fpa%3D9625481912-4%40ybl%26am%3D400%26cu%3DINR%26pn%3DMPL%2520Season%25206" alt="Auto QR 2">
                         <p>UPI 2 (₹400 Fix)</p>
@@ -170,7 +162,8 @@
 
                 <div class="form-group" style="text-align: left; margin-bottom: 0;">
                     <label for="paymentScreenshot">भुगतान का स्क्रीनशॉट (Payment Screenshot) *</label>
-                    <input type="file" id="paymentScreenshot" accept="image/*" required style="padding: 10px; background: white;">
+                    <input type="file" id="paymentScreenshot" accept=".jpg, .jpeg, .png" required style="padding: 10px; background: white;">
+                    <span class="hint">⚠️ स्क्रीनशॉट का साइज़ 50 KB से 500 KB के बीच होना चाहिए</span>
                 </div>
             </div>
 
@@ -178,7 +171,7 @@
         </form>
     </div>
 
-    <!-- सफलता संदेश (Success Modal) -->
+    <!-- सफलता संदेश -->
     <div id="successModal" class="modal">
         <div class="modal-content">
             <h2>🎉 बधाई हो!</h2>
@@ -217,13 +210,29 @@
                 return;
             }
 
+            // फोटो साइज़ चेकिंग (20 KB से 100 KB)
+            const photoFile = photoInput.files[0];
+            const photoSizeKB = photoFile.size / 1024;
+            if (photoSizeKB < 20 || photoSizeKB > 100) {
+                alert(`खिलाड़ी की फोटो का साइज़ 20 KB से 100 KB के बीच होना चाहिए!\nवर्तमान साइज़: ${Math.round(photoSizeKB)} KB है।`);
+                return;
+            }
+
+            // पेमेंट स्क्रीनशॉट साइज़ चेकिंग (50 KB से 500 KB)
+            const paymentFile = paymentInput.files[0];
+            const paymentSizeKB = paymentFile.size / 1024;
+            if (paymentSizeKB < 50 || paymentSizeKB > 500) {
+                alert(`भुगतान स्क्रीनशॉट का साइज़ 50 KB से 500 KB के बीच होना चाहिए!\nवर्तमान साइज़: ${Math.round(paymentSizeKB)} KB है।`);
+                return;
+            }
+
             const submitBtn = document.querySelector('.submit-btn');
             submitBtn.disabled = true;
-            submitBtn.innerText = 'फाइलें अपलोड हो रही हैं...';
+            submitBtn.innerText = 'फाइलें जाँची जा रही हैं...';
 
             try {
-                const playerPhotoBase64 = await getBase64(photoInput.files[0]);
-                const paymentScreenshotBase64 = await getBase64(paymentInput.files[0]);
+                const playerPhotoBase64 = await getBase64(photoFile);
+                const paymentScreenshotBase64 = await getBase64(paymentFile);
 
                 const formData = {
                     playerName: document.getElementById('playerName').value,
@@ -240,7 +249,7 @@
                     paymentScreenshot: paymentScreenshotBase64
                 };
 
-                submitBtn.innerText = 'पंजीकरण हो रहा है...';
+                submitBtn.innerText = 'सर्वर से जुड़ रहा है, कृपया प्रतीक्षा करें...';
 
                 const response = await fetch(`${BACKEND_URL}/api/register`, {
                     method: 'POST',
@@ -259,7 +268,7 @@
                 }
             } catch (error) {
                 console.error(error);
-                alert('सर्वर से संपर्क नहीं हो पा रहा है या फ़ाइल बहुत बड़ी है। कृपया कुछ देर बाद कोशिश करें।');
+                alert('सर्वर अभी स्लीप मोड से जाग रहा है। कृपया 30 सेकंड बाद दोबारा "पंजीकरण जमा करें" पर क्लिक करें!');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = 'पंजीकरण जमा करें';
